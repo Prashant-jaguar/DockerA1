@@ -1,0 +1,15 @@
+# base image: last debian release
+FROM debian:wheezy
+
+# install tha latest upgrades
+RUN apt-get update && apt-get -y dist-upgrade
+
+# install nginx
+RUN apt-get - y install nginx
+
+# set the default container command
+# -> run nginx in the foreground
+CMD ["nginx", "--g", "daemon off;"]
+
+# Tell the doctor engine that where will be something listening on TCP port 80
+EXPOSE 80
